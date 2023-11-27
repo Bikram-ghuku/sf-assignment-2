@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo</title>
+    <link type="text/css" rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="form-wrapper">
+            <div class="i-title">Select number of Players</div>
+            <div class="num-play"><input type="radio" class="no-play" name="play-no" value="2"> 2 Players</div>
+            <div class="num-play"><input type="radio" class="no-play" name="play-no" value="4"> 4 Players</div>
+            <button onclick="startGame()" class="btn btn-primary">Start The game</button>
+        </div>
+    </div>
+    <div class="game" id="game">
+        <div class="board">
+            <img src="./img/board.jpg" alt="" class="board-img"/>
+        </div>
+        <div class="info">
+            Current player: <div class="player" id="player-info">1</div>
+            <div class="dice">
+                <button class="roll-btn" id="roll-btn" onclick="rollDie()">
+                    <img src="./img/1.jpg" alt="" class="dice-img" id="dice-img"/>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>
+</body>
+</html>

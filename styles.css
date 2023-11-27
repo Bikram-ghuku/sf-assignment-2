@@ -1,0 +1,57 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+.game{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.board{
+    height: 100vh;
+    width: 70vw;
+}
+
+.board-img{
+    height: 100vh;
+    width: 60vw;
+}
+
+.info{
+    height: 100vh;
+    width: 30vw;
+    padding-right: 20vw;
+}
+
+.roll-btn{
+    border: none;
+    background: none;
+}
+
+.dice-img{
+    height: 10vh;
+    width: 5vw;
+}
+
+.intro{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper{
+    font-size: 40px;
+    width: 40vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
