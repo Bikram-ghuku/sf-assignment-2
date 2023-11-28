@@ -55,3 +55,29 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.piece{
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    position: absolute;
+    top: 17vh;
+    left: 10vw;
+    border: 2px solid black;
+}
+
+.red{
+    background-color: #D0312D;
+}
+
+.blue{
+    background-color: #2D5FD0;
+}
+
+.yellow{
+    background-color: #F2E205;
+}
+
+.green{
+    background-color: #0F9D58;
+}
