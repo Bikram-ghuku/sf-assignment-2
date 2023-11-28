@@ -61,8 +61,8 @@ body{
     width: 27px;
     border-radius: 50%;
     position: absolute;
-    top: 17vh;
-    left: 10vw;
+    top: 0vh;
+    left: 36vw;
     border: 2px solid black;
 }
 
@@ -81,3 +81,4 @@ body{
 .green{
     background-color: #0F9D58;
 }
+

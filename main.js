@@ -1,4 +1,5 @@
 import { HOME_POS } from "./js/pos.js";
+import { BOARD_POS_YELLOW } from "./js/pos.js";
 
 var gameSit = 0;
 var numPlayG = 0;
@@ -36,8 +37,8 @@ function drawPieces(){
                 var newPiece = document.createElement("div");
                 newPiece.className = "piece " + x ;
                 newPiece.id = "piece" + "-" + x + "-" + y;
-                newPiece.style.left = HOME_POS[x][y][1] + "%";
-                newPiece.style.top = HOME_POS[x][y][0] + "%";
+                newPiece.style.left = HOME_POS[x][y][1] + "vw";
+                newPiece.style.top = HOME_POS[x][y][0] + "vh";
                 parentElem.appendChild(newPiece);
             }
             numPlay--;
