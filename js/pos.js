@@ -20,7 +20,7 @@ export const BOARD_POS_4 = [[37, 26], [31, 26], [25, 26], [19, 26], [13, 26], [7
 export const BOARD_POS_5 = [[37, 33], [31, 33], [25, 33], [19, 33], [13, 33], [7, 33]];
 export const BOARD_POS_6 = [[42, 36], [42, 39], [42, 43], [42, 47], [42, 50], [42, 53], [48, 53]];
 export const BOARD_POS_7 = [[54, 53], [54, 50], [54, 46], [54, 43], [54, 39], [54, 36]];
-export const BOARD_POS_8 = [[90, 33], [84, 33], [78, 33], [72, 33], [66, 33], [60, 33], [90, 29.5], [90, 25.5]];
+export const BOARD_POS_8 = [[90, 29.5], [90, 33], [84, 33], [78, 33], [72, 33], [66, 33], [60, 33]];
 var BOARD_POS = []
 for(var x in BOARD_POS_1){
     BOARD_POS.push(BOARD_POS_1[x]);
@@ -43,14 +43,15 @@ for(var x in BOARD_POS_6){
 for(var x in BOARD_POS_7){
     BOARD_POS.push(BOARD_POS_7[x]);
 }
-for(var x in BOARD_POS_8){
+for(var x in BOARD_POS_8.reverse()){
     BOARD_POS.push(BOARD_POS_8[x]);
 }
 export {BOARD_POS};
 
 export const BOARD_POS_BLUE = [ [84, 29.5], [78, 29.5], [72, 29.5], [66, 29.5], [60, 29.5]] ;
-export const BOARD_POS_GREEN = [ [37, 29.5], [31, 29.5], [25, 29.5], [19, 29.5], [13, 29.5]] ;
-export const BOARD_POS_RED = [[48, 50], [48, 46], [48, 43], [48, 39], [48, 36]] ;
-export const BOARD_POS_YELLOW = [[48, 22], [48, 19], [48, 15], [48, 12], [48, 8]] ;
+export const BOARD_POS_GREEN = [ [37, 29.5], [31, 29.5], [25, 29.5], [19, 29.5], [13, 29.5]].reverse() ;
+export const BOARD_POS_RED = [[48, 50], [48, 46], [48, 43], [48, 39], [48, 36]];
+export const BOARD_POS_YELLOW = [[48, 22], [48, 19], [48, 15], [48, 12], [48, 8]].reverse();
 
 export const START_POS = {"blue": 1, "yellow":14, "green": 27, "red":40}
+export const END_POS = {"blue": 51, "yellow":12, "green": 25, "red":38}

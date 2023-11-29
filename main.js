@@ -1,8 +1,9 @@
-import { HOME_POS } from "./js/pos.js";
+import { BOARD_POS_BLUE, BOARD_POS_GREEN, BOARD_POS_RED, BOARD_POS_YELLOW, END_POS, HOME_POS } from "./js/pos.js";
 import { BOARD_POS, START_POS } from "./js/pos.js";
 
 var gameSit = 0;
 var numPlayG = 0;
+var dieG = -1;
 var currGame = {
     red: [-1, -1, -1, -1],
     blue: [-1, -1, -1, -1],
@@ -18,12 +19,15 @@ var userColorMap;
 
 
 document.getElementById("roll-btn").onclick = () => {
-    var die_img = document.getElementById("dice-img");
-    var die_num = Math.floor(Math.random() * 6) + 1;
-    die_img.src = "img/" + die_num + ".jpg";
-    gameSit++;
-    document.getElementById("player-info").innerHTML = userColorMap[(gameSit%numPlayG)];
-    handleRoll(die_num, userColorMap[(gameSit%numPlayG)]);
+    if(!false){
+        var die_img = document.getElementById("dice-img");
+        var die_num = Math.floor(Math.random() * 6) + 1;
+        dieG = die_num;
+        die_img.src = "img/" + die_num + ".jpg";
+        gameSit++;
+        document.getElementById("player-info").innerHTML = userColorMap[(gameSit%numPlayG)];
+        handleRoll(die_num, userColorMap[(gameSit%numPlayG)]);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,6 +55,7 @@ document.getElementById("strt").onclick = () =>{
         var die_img = document.getElementById("dice-img");
         var die_num = Math.floor(Math.random() * 6) + 1;
         die_img.src = "img/" + die_num + ".jpg";
+        dieG = die_num;
         handleRoll(die_num, userColorMap[0]);
     }
 }
@@ -85,6 +90,11 @@ function handleRoll(die_num, player){
             var colorD = index[1]
             var ind = index[2]
             var currPiece = currGame[colorD][ind]
+
+            var end = END_POS[colorD]
+            var diff = end - currPiece
+            var ifEnd = diff <= die_num && diff > 0
+
             if(colorD == userColorMap[(gameSit%numPlayG)] && die_num != -1){
                 if(currPiece == -1){
                     if(die_num == 6){
@@ -92,7 +102,14 @@ function handleRoll(die_num, player){
                     }
                 }
                 else{
-                    movePiece(elemId, currPiece + die_num)
+                    if(!ifEnd){
+                        movePiece(elemId, currPiece + die_num)
+                    }else{
+                        if(colorD == "red") movePieceCo(elemId, BOARD_POS_RED[die_num - diff - 1]);
+                        else if(colorD == "blue") movePieceCo(elemId, BOARD_POS_BLUE[die_num - diff - 1]);
+                        else if(colorD == "green") movePieceCo(elemId, BOARD_POS_GREEN[die_num - diff - 1 ]);
+                        else if(colorD == "yellow") movePieceCo(elemId, BOARD_POS_YELLOW[die_num - diff - 1]);
+                    }
                 }
             }
             die_num = -1;
@@ -100,15 +117,44 @@ function handleRoll(die_num, player){
     }
 }
 
+function movePieceCo(piece_id, target){
+    var info = piece_id.split("-")
+    var color = info[1]
+    // console.log("Moving to: ", target)
+    // var piece = document.getElementById(piece_id)
+    // piece.style.top = target[0] + "vh"
+    // piece.style.left = target[1] + "vw"
+    alert(color+" Successfully completed one piece")
+    document.getElementById(piece_id).hidden = true
+}
+
 function movePiece(piece_id, target){
-    if(target > 53) target-=53;
-    console.log("Moving piece", target, BOARD_POS.length)
+    if(target >= 52) target-=52;
     var piece = document.getElementById(piece_id)
-    piece.style.top = BOARD_POS[target][0]+"vh";
-    piece.style.left = BOARD_POS[target][1]+"vw";
     var elemId = piece.id
     var indexInfo = elemId.split("-")
     var color = indexInfo[1]
     var index = indexInfo[2]
+    piece.style.top = BOARD_POS[target][0]+"vh";
+    piece.style.left = BOARD_POS[target][1]+"vw";
     currGame[color][index] = target
+}
+
+function avaiableMoves(){
+    var colorAct = userColorMap[(gameSit%numPlayG)]
+    var colorSit = gameSit[colorAct];
+    var endpos = END_POS[colorSit]
+    var flag = false;
+    for(var x in colorSit){
+        if(!flag){
+            if(colorSit[x] == -1 && dieG == 6){
+                flag = true;
+            }
+            else if(colorSit[x] != 99 && colorSit[x] - endpos >= dieG){
+                flag = true;
+            }
+        }
+    }
+    console.log(flag, dieG)
+    return flag;
 }
