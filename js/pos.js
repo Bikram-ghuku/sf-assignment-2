@@ -34,7 +34,7 @@ for(var x in BOARD_POS_3){
 for(var x in BOARD_POS_4){
     BOARD_POS.push(BOARD_POS_4[x]);
 }
-for(var x in BOARD_POS_5){
+for(var x in BOARD_POS_5.reverse()){
     BOARD_POS.push(BOARD_POS_5[x]);
 }
 for(var x in BOARD_POS_6){
@@ -52,3 +52,5 @@ export const BOARD_POS_BLUE = [ [84, 29.5], [78, 29.5], [72, 29.5], [66, 29.5], 
 export const BOARD_POS_GREEN = [ [37, 29.5], [31, 29.5], [25, 29.5], [19, 29.5], [13, 29.5]] ;
 export const BOARD_POS_RED = [[48, 50], [48, 46], [48, 43], [48, 39], [48, 36]] ;
 export const BOARD_POS_YELLOW = [[48, 22], [48, 19], [48, 15], [48, 12], [48, 8]] ;
+
+export const START_POS = {"blue": 1, "yellow":14, "green": 27, "red":40}
