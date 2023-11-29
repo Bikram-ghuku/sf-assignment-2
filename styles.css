@@ -61,8 +61,8 @@ body{
     width: 27px;
     border-radius: 50%;
     position: absolute;
-    top: 0vh;
-    left: 36vw;
+    top: 90vh;
+    left: 25.5vw;
     border: 2px solid black;
     transition: all 0.5s ease;
 }

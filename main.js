@@ -84,18 +84,25 @@ function handleRoll(die_num, player){
             var index = elemId.split("-")
             var colorD = index[1]
             var ind = index[2]
-            console.log(index, currGame[colorD][ind])
-            console.log(colorD, colorD == "red", colorD == "blue", colorD=="green")
-            if(currGame[colorD][ind] == -1 && die_num == 6){
-                movePiece(clickElem.id, START_POS[colorD]);
+            var currPiece = currGame[colorD][ind]
+            if(colorD == userColorMap[(gameSit%numPlayG)] && die_num != -1){
+                if(currPiece == -1){
+                    if(die_num == 6){
+                        movePiece(elemId, START_POS[colorD]);
+                    }
+                }
+                else{
+                    movePiece(elemId, currPiece + die_num)
+                }
             }
-
+            die_num = -1;
         }
     }
 }
 
 function movePiece(piece_id, target){
-    console.log("Moving piece")
+    if(target > 53) target-=53;
+    console.log("Moving piece", target, BOARD_POS.length)
     var piece = document.getElementById(piece_id)
     piece.style.top = BOARD_POS[target][0]+"vh";
     piece.style.left = BOARD_POS[target][1]+"vw";
