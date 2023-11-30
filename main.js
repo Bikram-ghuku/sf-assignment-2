@@ -174,3 +174,7 @@ function checkWin(color){
         alert(color+" Won the game")
     }
 }
+
+document.getElementById("reset-btn").onclick = () =>{
+    location.reload();
+}
