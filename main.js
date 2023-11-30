@@ -10,6 +10,7 @@ var currGame = {
     green: [-1, -1, -1, -1],
     yellow: [-1, -1, -1, -1]
 }
+var dieRolls = []
 
 var userColorMap_2 = ["yellow", "red"];
 var userColorMap_3 = ["yellow", "red", "green"];
@@ -19,12 +20,14 @@ var userColorMap;
 
 
 document.getElementById("roll-btn").onclick = () => {
-    if(!false){
+    if(!avaiableMoves(currGame, userColorMap[(gameSit%numPlayG)], dieG)){
         var die_img = document.getElementById("dice-img");
         var die_num = Math.floor(Math.random() * 6) + 1;
         dieG = die_num;
         die_img.src = "img/" + die_num + ".jpg";
+        dieRolls.push(die_num)
         gameSit++;
+
         document.getElementById("player-info").innerHTML = userColorMap[(gameSit%numPlayG)];
         handleRoll(die_num, userColorMap[(gameSit%numPlayG)]);
     }
@@ -56,6 +59,7 @@ document.getElementById("strt").onclick = () =>{
         var die_num = Math.floor(Math.random() * 6) + 1;
         die_img.src = "img/" + die_num + ".jpg";
         dieG = die_num;
+        dieRolls.push(die_num)
         handleRoll(die_num, userColorMap[0]);
     }
 }
@@ -126,6 +130,9 @@ function movePieceCo(piece_id, target){
     // piece.style.left = target[1] + "vw"
     alert(color+" Successfully completed one piece")
     document.getElementById(piece_id).hidden = true
+    var index = info[2]
+    currGame[color][index] = 99
+    checkWin(color);
 }
 
 function movePiece(piece_id, target){
@@ -140,21 +147,30 @@ function movePiece(piece_id, target){
     currGame[color][index] = target
 }
 
-function avaiableMoves(){
-    var colorAct = userColorMap[(gameSit%numPlayG)]
-    var colorSit = gameSit[colorAct];
-    var endpos = END_POS[colorSit]
-    var flag = false;
-    for(var x in colorSit){
-        if(!flag){
-            if(colorSit[x] == -1 && dieG == 6){
-                flag = true;
-            }
-            else if(colorSit[x] != 99 && colorSit[x] - endpos >= dieG){
-                flag = true;
-            }
+function avaiableMoves(currGame, color, die_num){
+    var flag = true;
+    for(var x in currGame[color]){
+        if(currGame[color][x] != -1){
+            flag = false;
         }
     }
-    console.log(flag, dieG)
-    return flag;
+    if(flag){
+        if(die_num == 6){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function checkWin(color){
+    var flag = true;
+    for(var x in currGame[color]){
+        if(currGame[color][x] != 99){
+            flag = false;
+        }
+    }
+    if(flag){
+        alert(color+" Won the game")
+    }
 }
